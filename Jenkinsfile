@@ -21,5 +21,35 @@ pipeline {
                 sh 'sudo apt-get install terraform -y'
             }
         }
+        stage ('Find  Terraform Version') {
+            steps {
+                sh 'terraform -version'
+            }
+        }
+        stage ('Terraform Initilization') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage ('Terraform Plan') {
+            steps {
+                sh 'terraform plan'
+            }
+        }
+        stage ('Terraform Apply') {
+            steps {
+                sh 'terraform apply --auto-approve'
+            }
+        }
+        stage ('Approval to Destroy'){
+            steps {
+                input message: 'Approve to Destroy', ok: 'Destroy'
+            }
+        }
+        stage ('Terraform Destroy') {
+            steps {
+                sh 'terraform destroy --auto-approve'
+            }
+        }
     }
 }
