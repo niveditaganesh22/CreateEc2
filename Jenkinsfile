@@ -3,12 +3,13 @@ pipeline {
         label 'newagent'
     }
     stages {
-        stage ('Build on agent') {
+        stage('Build on agent') {
             steps {
-                echo "This is first build in jenkins pipeline"
+                echo "This is the first build in Jenkins pipeline"
                 echo "Running on agent: ${env.NODE_NAME}"
             }
-            stage ('Terraform Install On Jenkins Node') {
+        }
+        stage('Terraform Install On Jenkins Node') {
             steps {
                 sh 'echo "This is Jenkins Pipeline"'
                 sh 'sudo apt-get update'
@@ -19,7 +20,6 @@ pipeline {
                 sh 'sudo apt update'
                 sh 'sudo apt-get install terraform -y'
             }
-        }
         }
     }
 }
