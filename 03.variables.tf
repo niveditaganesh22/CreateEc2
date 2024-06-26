@@ -6,5 +6,5 @@ variable "ami" {
 variable "instance_type" {
   description = "type of instance used"
   type        = string
-  default     = "t3.micro"
+  default     = "t3.nano"
 }
